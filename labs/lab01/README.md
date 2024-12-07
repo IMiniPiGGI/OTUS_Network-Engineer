@@ -2,7 +2,7 @@
 
 # Топология
 
-![pic base](https://github.com/user-attachments/assets/a29dcd3c-94d8-4780-b8e3-839a72def2d9)
+![](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/cc890a2972b0abac585d62647787bfa38239c69b/labs/lab01/pics/pic%20base.png)
 
 # Таблица адресации
 
