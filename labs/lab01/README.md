@@ -2,7 +2,7 @@
 
 # Топология
 
-![The topology shows PC-A connecting to Switch S1 via the console port and F0/6 port.](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/Basic-Homework/labs/lab01/pics/pic 1.png)
+![The topology shows PC-A connecting to Switch S1 via the console port and F0/6 port.](data:image/png;/labs/lab01/pics/pic 1.png)
 
 # Таблица адресации
 
