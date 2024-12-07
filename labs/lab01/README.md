@@ -51,7 +51,7 @@
 Шаг 2. Проверяю настройки коммутатора по умолчанию
 
 1. Вывожу содержимое файла running-config, предварительно войдя в режим EXEC введя команду enable
-````markdown
+```markdown
 Switch>enable
 Switch#show running-config
 Building configuration...
@@ -131,7 +131,7 @@ line vty 5 15
  login
 !
 end
-````
+```
 
 Вопрос: Сколько интерфейсов FastEthernet имеется на коммутаторе 2960?
 
