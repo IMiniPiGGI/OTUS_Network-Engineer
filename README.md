@@ -1,7 +1,7 @@
 # OTUS_Network-Engineer.Basic
 Обучение Otus, Network Engineer.Basic
 
-- - - [Лаба 1](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab01/README.md)
+-    [Лаба 1](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab01/README.md)
 
 [Лаба 2](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab02/README.md)
 
