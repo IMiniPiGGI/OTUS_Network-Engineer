@@ -203,6 +203,7 @@ Internet protocol processing disabled
 1. Подсоединяю кабель Ethernet компьютера PC-A к порту 6 на коммутаторе и изучаю IP-свойства интерфейса SVI сети VLAN 1, предварительно дождавшись согласования параметров скорости и дуплекса между коммутатором и ПК
 
 ![](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/cc890a2972b0abac585d62647787bfa38239c69b/labs/lab01/pics/pic%203.png)
+
 Вопрос: Какие выходные данные вы видите?
 
 Ответ: Интерфейс выключен, протокол IP отключен.
