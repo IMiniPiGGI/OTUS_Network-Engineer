@@ -2,7 +2,7 @@
 
 # Топология
 
-![](pic_base)
+![](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab04/pics/pic%20base.png)
 
 # Таблица адресации
 
@@ -19,6 +19,9 @@
 # Решение
 
 ## Часть 1. Настройка топологии и конфигурация основных параметров маршрутизатора и коммутатора
+Подключаю оборудование согласно топологии:
+
+![](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab04/pics/pic%201.png)
 
 После подключения сети, инициализации и перезагрузки маршрутизатора и коммутатора выполняю следующие действия:
 
@@ -173,21 +176,21 @@ SLAACC:
 
 PC-A
 
-![](Pic 2)
+![](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab04/pics/pic%202.png)
 
 PC-B
 
-![](Pic 3)
+![](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab04/pics/pic%203.png)
 
 Static:
 
 PC-A
 
-![](Pic 4)
+![](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab04/pics/pic%204.png)
 
 PC-B
 
-![](Pic 5)
+![](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab04/pics/pic%205.png)
 
 ## Часть 3. Проверка сквозного подключения
 
