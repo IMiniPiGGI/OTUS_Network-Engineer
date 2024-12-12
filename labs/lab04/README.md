@@ -96,7 +96,7 @@ ipv6 address fe80::1 link-local
 1. Используя выбранную команду, убеждаюсь, что локальный адрес связи изменен на fe80::1.
 ```
 R1#sh ipv6 interface brief
-GigabitEthernet0/0/0 [up/up\]
+GigabitEthernet0/0/0 [up/up]
 FE80::1
 2001:DB8:ACAD:A::1
 GigabitEthernet0/0/1 [up/up]
