@@ -77,13 +77,13 @@ no sh
 1. Ввожу команду show ipv6 interface brief, чтобы проверить, назначен ли каждому интерфейсу корректный индивидуальный IPv6-адрес.
 ```
 R1#show ipv6 interface brief
-GigabitEthernet0/0/0 \[up/up\]
+GigabitEthernet0/0/0 [up/up]
 FE80::202:17FF:FE9C:3101
 2001:DB8:ACAD:A::1
-GigabitEthernet0/0/1 \[up/up\]
+GigabitEthernet0/0/1 [up/up]
 FE80::202:17FF:FE9C:3102
 2001:DB8:ACAD:1::1
-Vlan1 \[administratively down/down\]
+vlan1 [administratively down/down]
 unassigned
 ```
 1. Чтобы обеспечить соответствие локальных адресов канала индивидуальному адресу, вручную ввожу локальные адреса канала на каждом интерфейсе Ethernet на R1.
@@ -96,13 +96,13 @@ ipv6 address fe80::1 link-local
 1. Используя выбранную команду, убеждаюсь, что локальный адрес связи изменен на fe80::1.
 ```
 R1#sh ipv6 interface brief
-GigabitEthernet0/0/0 \[up/up\]
+GigabitEthernet0/0/0 [up/up\]
 FE80::1
 2001:DB8:ACAD:A::1
-GigabitEthernet0/0/1 \[up/up\]
+GigabitEthernet0/0/1 [up/up]
 FE80::1
 2001:DB8:ACAD:1::1
-Vlan1 \[administratively down/down\]
+vlan1 [administratively down/down]
 unassigned
 ```
 Вопрос: Какие группы многоадресной рассылки назначены интерфейсу G0/0?
