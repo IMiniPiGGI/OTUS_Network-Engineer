@@ -30,7 +30,7 @@
 
 Подключите устройства, как показано в топологии, и подсоедините необходимые кабели.
 
-![]([pic_1](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab07/pics/pic_1.png))
+![](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab07/pics/pic_1.png)
 
 ## Шаг 2. Выполните инициализацию и перезагрузку коммутаторов
 
