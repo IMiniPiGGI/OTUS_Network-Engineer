@@ -154,7 +154,7 @@ Fa0/4            Desg FWD 19        128.4    P2p
 ```
 В схему ниже запишите роль и состояние (Sts) активных портов на каждом коммутаторе в топологии.
 
-![]([pic_scheme](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab07/pics/pic_schema.png))
+![](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab07/pics/pic_schema.png)
 
 С учетом выходных данных, поступающих с коммутаторов, ответьте на следующие вопросы.
 
