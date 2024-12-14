@@ -2,7 +2,7 @@
 
 ## Топология
 
-![](pic_base)
+![](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab07/pics/pic_base.png)
 
 ## Таблица адресации
 
@@ -30,7 +30,7 @@
 
 Подключите устройства, как показано в топологии, и подсоедините необходимые кабели.
 
-![](pic_1)
+![]([pic_1](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab07/pics/pic_1.png))
 
 ## Шаг 2. Выполните инициализацию и перезагрузку коммутаторов
 
@@ -154,7 +154,7 @@ Fa0/4            Desg FWD 19        128.4    P2p
 ```
 В схему ниже запишите роль и состояние (Sts) активных портов на каждом коммутаторе в топологии.
 
-![](pic_scheme)
+![]([pic_scheme](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab07/pics/pic_schema.png))
 
 С учетом выходных данных, поступающих с коммутаторов, ответьте на следующие вопросы.
 
