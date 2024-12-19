@@ -218,7 +218,7 @@ R2(config-if)# ipv6 dhcp relay destination 2001:db8:acad:2::1 g0/0/0
 1. Сохраните конфигурацию.
 
    # UPD
-  Так как в CPT нет возможности настроить трансляцию IPv6 DHCP, настроил DHCP IPv6 непосредственно на R2:
+  Так как в CPT нет возможности настроить трансляцию DHCP IPv6, настроил DHCP IPv6 непосредственно на R2:
   ```
     R2>en
 Password: 
@@ -243,5 +243,3 @@ R2(config-if)#ipv6 nd managed-config-flag
 1. Проверьте подключение с помощью пинга IP-адреса интерфейса R0 G0/0/1.
 
 ![](https://github.com/IMiniPiGGI/OTUS_Network-Engineer/blob/Basic-Homework/labs/lab08/pics/pic_ipv6_9.png)
-
-Честно говоря, в Cisco Packet Tracer не смог настроить ipv6 dhcp relay на порту, так как такой команды в cpt в принципе нет, поэтому подключил PC-B к R1, чтобы получить хотя бы какой-то результат. Однако, даже без настроек dns при подключении по топологии, по протоколу SLAAC генерируется IPv6 адрес на PC-B, при помощи которого он может отправлять запросы на Gi0/0/1 R1.
