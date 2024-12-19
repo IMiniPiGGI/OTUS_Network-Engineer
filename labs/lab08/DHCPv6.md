@@ -217,6 +217,22 @@ R2(config-if)# ipv6 dhcp relay destination 2001:db8:acad:2::1 g0/0/0
 ```
 1. Сохраните конфигурацию.
 
+   # UPD
+  Так как в CPT нет возможности настроить трансляцию IPv6 DHCP, настроил DHCP IPv6 непосредственно на R2:
+  ```
+    R2>en
+Password: 
+R2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#ipv6 dhcp pool R2-STATEFUL
+R2(config-dhcpv6)#address prefix 2001:db8:acad:3:aaa::/80 lifetime 172800 86400
+R2(config-dhcpv6)#dns-server 2001:DB8:ACAD::254
+R2(config-dhcpv6)#domain-name STATEFUL.com
+R2(config-dhcpv6)#int gi 0/0/1
+R2(config-if)#ipv6 dhcp server R2-STATEFUL
+R2(config-if)#ipv6 nd managed-config-flag
+  ```
+
 Шаг 3. Попытка получить адрес IPv6 из DHCPv6 на PC-B.
 
 1. Перезапустите PC-B.
