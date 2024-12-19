@@ -122,9 +122,8 @@ R1(config-subif)#int gi 0/0/1.200
 R1(config-subif)#enc dot1Q 200
 R1(config-subif)#ip addr 192.168.1.65 255.255.255.224
 R1(config-subif)#int gi 0/0/1.1000
-R1(config-subif)#enc dot1Q 200
-R1(config-subif)#ip addr 192.168.1.65 255.255.255.224
-R1(config-subif)#int gi 0/0/1.1000
+R1(config-subif)#enc dot1Q 1000 native
+R1(config-subif)#no ip address
 ```
 ### Шаг 5. Настройте G0/1 на R2, затем G0/0/0 и статическую маршрутизацию для обоих маршрутизаторов
 
