@@ -127,6 +127,7 @@ wr
 - - 3.  Назначьте все неиспользуемые порты коммутатора VLAN Parking Lot, настройте их для статического режима доступа и административно деактивируйте их.
 
 **Примечание.** Команда interface range полезна для выполнения этой задачи с помощью необходимого количества команд.
+
 S1
 ```
 conf t
@@ -186,7 +187,8 @@ wr
 
 - - 1. Назначьте используемые порты соответствующей VLAN (указанной в таблице VLAN выше) и настройте их для режима статического доступа.
 - - 2.  Выполните команду **show vlan brief**, чтобы убедиться, что сети VLAN назначены правильным интерфейсам.
-R1
+    
+S1
 ```
 conf t
 int fa0/6
@@ -434,8 +436,9 @@ R1(config)# **ip http secure-server**
 
 R1(config)# **ip http authentication local**
 
-**К сожалению, в Cisco Packet Tracer нет http сервера на cisco. Вместо него я поставил сервер с адресом 10.20.0.20 с https сервером. Подключил его к S1 в порт fa0/20. Схема подключения:**
+**К сожалению, в Cisco Packet Tracer нет http сервера на cisco. Вместо него я поставил сервер с адресами 10.20.0.20 и 172.16.2.20 с https сервером. Подключил его к S1 в порт fa0/20. Схема подключения:**
 ![image](https://github.com/user-attachments/assets/7a928504-449b-4c95-af7a-e9c6bf1e72f4)
+
 **Конфиг S1**
 ```
 conf t
@@ -500,6 +503,31 @@ Reply from 172.16.1.1: bytes=32 time<1ms TTL=255
 ```
 ![image](https://github.com/user-attachments/assets/2f8b0dd1-9b4e-4625-bd41-9c5d286bb43b)
 
+Для имитации веб на loopback
+```
+R1(config)#int gi 0/0/1.172
+R1(config-subif)#ip addr 172.16.2.1 255.255.255.0
+R1(config-subif)#no sh
+```
+```
+S1#conf t
+S1(config)#vlan 172
+S1(config-vlan)#name web-in-virt-loop
+S1(config-vlan)#ex
+S1(config)#int fa 0/5
+S1(config-if)#sw tr all vl add 172
+S1(config-if)#int fa0/21
+S1(config-if)#sw m ac
+S1(config-if)#sw ac vl 172
+S1(config-if)#no sh
+```
+![image](https://github.com/user-attachments/assets/68f500ba-0627-4e60-b491-c6fed9c4cecc)
+
+![image](https://github.com/user-attachments/assets/24ed59bb-0f27-45ff-8314-c03d08795a94)
+
+![image](https://github.com/user-attachments/assets/bd8f6cc8-fdcb-4534-9bec-1ac2c95474af)
+
+
 ## Настройка и проверка списков контроля доступа (ACL)
 
 При проверке базового подключения компания требует реализации следующих политик безопасности:
@@ -517,7 +545,44 @@ Reply from 172.16.1.1: bytes=32 time<1ms TTL=255
 ### Разработка и применение расширенных списков доступа, которые будут соответствовать требованиям политики безопасности
 
 Откройте окно конфигурации
-
+```
+conf t
+ip access-list extended 101
+50 deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 22
+60 deny icmp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 echo
+40 deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq www
+41 deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 443
+70 deny tcp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 eq www
+71 deny tcp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 eq 443
+80 deny icmp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 echo
+80 deny icmp 10.30.0.0 0.0.0.255 10.40.0.0 0.0.0.255 echo
+100 permit ip any any
+```
+```
+R1(config-ext-nacl)#do sh acc
+Extended IP access list 101
+    40 deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq www
+    41 deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 443
+    50 deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 22
+    60 deny icmp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 echo
+    70 deny tcp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 eq www
+    71 deny tcp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 eq 443
+    80 deny icmp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 echo
+    80 deny icmp 10.30.0.0 0.0.0.255 10.40.0.0 0.0.0.255 echo
+    100 permit ip any any
+```
+```
+conf t
+int gi 0/0/1.20
+ip access-group 101 in
+int gi 0/0/1.30
+ip access-group 101 in
+int gi 0/0/1.40
+ip access-group 101 in
+int gi 0/0/1.172
+ip access-group 101 in
+do wr
+```
 Закройте окно настройки.
 
 ### Убедитесь, что политики безопасности применяются развернутыми списками доступа
@@ -535,5 +600,15 @@ Reply from 172.16.1.1: bytes=32 time<1ms TTL=255
 | PC-B | HTTPS | 172.16.1.1 | Успех |
 | PC-B | SSH | 10.20.0.4 | Сбой |
 | PC-B | SSH | 172.16.1.1 | Успех |
+
+![image](https://github.com/user-attachments/assets/1ff38f0e-40bc-4f61-b4b8-53339810b251)
+
+![image](https://github.com/user-attachments/assets/667c9c86-499c-4707-8056-669fbbd87ef6)
+
+![image](https://github.com/user-attachments/assets/88c1322c-1425-4fa7-a1ab-77d266861e94)
+
+![image](https://github.com/user-attachments/assets/dd745ea2-968c-4d2d-982e-e8a2b3d2c152)
+
+![image](https://github.com/user-attachments/assets/3fdb0610-0b33-4a1a-9015-cd68bdc13ba7)
 
 Конец документа
