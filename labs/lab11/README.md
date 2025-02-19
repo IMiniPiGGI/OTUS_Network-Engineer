@@ -408,8 +408,8 @@ wr
 ### Настройте все сетевые устройства для базовой поддержки SSH
 
 Откройте окно конфигурации
-
-- - 1. Создайте локального пользователя с именем пользователя SSHadmin и зашифрованным паролем $cisco123!
+w
+- - 1. Создайте локального пользователя с именем пользователя SSHadmin и зашифрованным паролем wdq
 - - 2.  Используйте **ccna-lab.com** в качестве доменного имени.
 - - 3.  Генерируйте криптоключи с помощью 1024 битного модуля.
 - - 4.  Настройте первые пять линий VTY на каждом устройстве, чтобы поддерживать только SSH-соединения и с локальной аутентификацией.
@@ -545,42 +545,42 @@ S1(config-if)#no sh
 ### Разработка и применение расширенных списков доступа, которые будут соответствовать требованиям политики безопасности
 
 Откройте окно конфигурации
+
 ```
-conf t
-ip access-list extended 101
-50 deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 22
-60 deny icmp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 echo
-40 deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq www
-41 deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 443
-70 deny tcp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 eq www
-71 deny tcp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 eq 443
-80 deny icmp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 echo
-80 deny icmp 10.30.0.0 0.0.0.255 10.40.0.0 0.0.0.255 echo
-100 permit ip any any
-```
-```
-R1(config-ext-nacl)#do sh acc
-Extended IP access list 101
-    40 deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq www
-    41 deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 443
-    50 deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 22
-    60 deny icmp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 echo
-    70 deny tcp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 eq www
-    71 deny tcp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 eq 443
-    80 deny icmp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 echo
-    80 deny icmp 10.30.0.0 0.0.0.255 10.40.0.0 0.0.0.255 echo
-    100 permit ip any any
-```
-```
-conf t
+ip ac ex 20-out
+10 deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 22
+20 deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 88
+21 deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 443
+30 deny icmp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 echo
+99 permit ip any any
+ex
+ip ac ex 40-in
+10 deny tcp 10.40.0.0 0.0.0.255 host 10.20.0.1 eq 80
+11 deny tcp 10.40.0.0 0.0.0.255 host 10.20.0.1 eq 443
+20 deny tcp 10.40.0.0 0.0.0.255 host 10.30.0.1 eq 80
+21 deny tcp 10.40.0.0 0.0.0.255 host 10.30.0.1 eq 443
+30 deny tcp 10.40.0.0 0.0.0.255 host 10.40.0.1 eq 80
+31 deny tcp 10.40.0.0 0.0.0.255 host 10.40.0.1 eq 443
+40 deny icmp 10.40.0.0 0.0.0.255 host 10.20.0.1 echo
+41 deny icmp 10.40.0.0 0.0.0.255 host 10.30.0.1 echo
+99 permit ip any any
+ex
+ip ac ex 40-out
+10 deny icmp 10.30.0.0 0.0.0.255 10.40.0.0 0.0.0.255 echo
+99 permit ip any any
+ex
+ip ac ex 30-out
+10 deny icmp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 echo
+99 permit ip any any
+ex
 int gi 0/0/1.20
-ip access-group 101 in
+ip ac 20-out out
 int gi 0/0/1.30
-ip access-group 101 in
+ip ac 30-out out
 int gi 0/0/1.40
-ip access-group 101 in
-int gi 0/0/1.172
-ip access-group 101 in
+ip ac 40-out out
+ip ac 40-in in
+ex
 do wr
 ```
 Закройте окно настройки.
@@ -601,14 +601,15 @@ do wr
 | PC-B | SSH | 10.20.0.4 | Сбой |
 | PC-B | SSH | 172.16.1.1 | Успех |
 
-![image](https://github.com/user-attachments/assets/1ff38f0e-40bc-4f61-b4b8-53339810b251)
-
-![image](https://github.com/user-attachments/assets/667c9c86-499c-4707-8056-669fbbd87ef6)
+![image](https://github.com/user-attachments/assets/7ef80170-aad4-406d-bdcc-dd43f992f466)
 
 ![image](https://github.com/user-attachments/assets/88c1322c-1425-4fa7-a1ab-77d266861e94)
 
 ![image](https://github.com/user-attachments/assets/dd745ea2-968c-4d2d-982e-e8a2b3d2c152)
 
-![image](https://github.com/user-attachments/assets/3fdb0610-0b33-4a1a-9015-cd68bdc13ba7)
+![image](https://github.com/user-attachments/assets/294495d8-bedb-4570-adec-7e39bc68c5c1)
+
+
+
 
 Конец документа
